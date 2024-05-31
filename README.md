@@ -2,6 +2,7 @@
 
 The coursework is a utility for processing PNG images. 
 Available functionality: draw a circle, RGBFilter, split image into n*m parts, draw a square with diagonals, add a frame to the image.
+See used [lib](https://github.com/KirillMaltsev3341/ImageEditor)
 
 ## Installation and Building
 ```bash
@@ -20,8 +21,8 @@ To see detailed information about the launch flags
 1. In Handler.h:
    1.1. add new **#define NEW_FLAG_IDX1**, **#define NEW_FLAG_IDX2**, **...**
    2.2. change **#define FLAGS_NUMBER** value
-3. In Handler.cpp:
+2. In Handler.cpp:
    2.1. add new flags in Handler::Handler() constructor
    2.2. add new case in Handler::handleFlags() method
-5. Add your new isFunction and doFunction in relevant .h and .cpp files
-6. Add new parsing functions if needed
+3. Add your new isFunction and doFunction in relevant .h and .cpp files
+4. Add new parsing functions if needed
