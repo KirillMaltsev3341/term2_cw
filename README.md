@@ -1,7 +1,7 @@
 # term2_cw
 
 The coursework is a utility for processing PNG images. 
-Available functionality: draw a circle, RGBFilter, split image into n*m parts, draw a square with diagonals, add a frame to the image.
+Available functionality: draw a circle, RGBFilter, split image into n*m parts, draw a square with diagonals, add a frame to the image.  
 See used [lib](https://github.com/KirillMaltsev3341/ImageEditor)
 
 ## Installation and Building
