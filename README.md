@@ -5,7 +5,7 @@ Available functionality: draw a circle, RGBFilter, split image into n*m parts, d
 
 ## Installation and Building
 ```bash
-git clone ...
+git clone https://github.com/KirillMaltsev3341/term2_cw.git
 cd term2_cw
 make build_libs
 make
@@ -18,10 +18,10 @@ To see detailed information about the launch flags
 
 ## Adding New Functionality and Flags
   1. In Handler.h:
-    1. add new **#define NEW_FLAG_IDX1**, **#define NEW_FLAG_IDX2**, **...**
-    2. change **#define FLAGS_NUMBER** value
+    1.1 add new **#define NEW_FLAG_IDX1**, **#define NEW_FLAG_IDX2**, **...**
+    2.2 change **#define FLAGS_NUMBER** value
   2. In Handler.cpp:
-    1. add new flags in Handler::Handler() constructor
-    2. add new case in Handler::handleFlags() method
+    2.1 add new flags in Handler::Handler() constructor
+    2.2 add new case in Handler::handleFlags() method
   3. Add your new isFunction and doFunction in relevant .h and .cpp files
   4. Add new parsing functions if needed
