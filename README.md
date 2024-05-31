@@ -25,3 +25,6 @@ To see detailed information about the launch flags
     2.2. add new case in Handler::handleFlags() method
   5. Add your new isFunction and doFunction in relevant .h and .cpp files
   6. Add new parsing functions if needed
+
+100. First list item
+     100.1. First nested list item
