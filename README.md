@@ -19,10 +19,10 @@ To see detailed information about the launch flags
 
 ## Adding New Functionality and Flags
 1. In Handler.h:
-   1.1. add new **#define NEW_FLAG_IDX1**, **#define NEW_FLAG_IDX2**, **...**
-   2.2. change **#define FLAGS_NUMBER** value
+   1.1. Add new **#define NEW_FLAG_IDX1**, **#define NEW_FLAG_IDX2**, **...**
+   2.2. Change **#define FLAGS_NUMBER** value
 2. In Handler.cpp:
-   2.1. add new flags in Handler::Handler() constructor
-   2.2. add new case in Handler::handleFlags() method
+   2.1. Add new flags in Handler::Handler() constructor
+   2.2. Add new case in Handler::handleFlags() method
 3. Add your new isFunction and doFunction in relevant .h and .cpp files
 4. Add new parsing functions if needed
