@@ -1,6 +1,6 @@
 /**
- * @file Handler.h
- * @brief Header with a description of the Handler class and other structures to work with launch flags
+ * @file FlagsHandler.h
+ * @brief Header with a description of the FlagsHandler class and other structures to work with launch flags
  * @version 0.1
  * @date 2024-05-19
  * 
@@ -8,9 +8,10 @@
  * 
  */
 
-#ifndef HANDLER_H
-#define HANDLER_H
+#ifndef FLAGS_HANDLER_H
+#define FLAGS_HANDLER_H
 
+#include "ImagePNGHandler.h"
 #include <getopt.h>
 #include <map>
 #include <string>
@@ -49,45 +50,70 @@
 #define OUTSIDE_ORNAMENT_IDX    1018
 
 
-/**
- * @brief namespace of Handler.h
- * 
- */
-namespace hdlr
-{
-
-/**
- * @brief Outputs errors to the out stream when processing images
- * 
- * @param[in] error_message the error message that will be displayed in the out stream
- * @param[in] exit_code the error code with which the program will terminate
- */
-void throwError(const char *error_message, int exit_code);
-
-
-/**
- * @brief Structure for representing input flags
- * 
- */
-struct Flag
-{
-    bool entered;
-    std::string parameter;
-};
-
 
 /**
  * @brief Class for working with input flags
  * 
  */
-class Handler
+class FlagsHandler
 {
+
+public:
+    
+    /**
+     * @brief Construct a new FlagsHandler object
+     * 
+     */
+    FlagsHandler();
+
+    /**
+     * @brief Destroy the FlagsHandler object
+     * 
+     */
+    ~FlagsHandler();
+
+    /**
+     * @brief Get the flags and write them to the map (flags_)
+     * 
+     * @param[in] argc 
+     * @param[in] argv 
+     */
+    void getFlags(int argc, char **argv);
+    
+    /**
+     * @brief Handling flags and calling the appropriate function
+     * 
+     */
+    void handleFlags();
+
 private:
+
+    /**
+     * @brief Structure for representing input flags
+     * 
+     */
+    struct Flag
+    {
+        bool entered;
+        std::string parameter;
+    };
+
+
     std::map<int, Flag>    flags_;                         // map of flags, contains pairs (FLAG_IDX, Flag)
     const char             *short_options_;                // flags with a short format
     const struct option    long_options_[FLAGS_NUMBER];    // flags with a long format
-    std::string            last_argument_;                 // the last argument can be passed the name of the input file
+    std::string            last_argument_;                 // the name of the input file can be passed as the last argument
+    ImagePNGHandler        image_png_handler_;             // handler for processing PNG image
     
+    /**
+     * @brief Outputs errors to the out stream when processing images
+     * 
+     * @param[in] error_message the error message that will be displayed in the out stream
+     * @param[in] exit_code the error code with which the program will terminate
+     */
+    void throwError(const char *error_message, int exit_code);
+
+
     /**
      * @brief Get the redundant flags that must not be entered
      * 
@@ -109,7 +135,7 @@ private:
      */
     bool checkFlagCompliance(std::set<int>& required_flags, 
         std::set<int>& redundant_flags);
-
+    
     /**
      * @brief Get names of input and output files
      * 
@@ -118,9 +144,8 @@ private:
      */
     void getFinFoutNames(std::string &input_file_name, std::string &output_file_name);
 
-
     
-    // isFunctions check if the required set of flags has been typed
+    // isFunctions check if the required set of flags has been entered
     bool isHelp();
     bool isInfo();
     bool isCircle();
@@ -130,7 +155,7 @@ private:
     bool isOutsideOrnament();
     
 
-    // doFunctions execute a set of commands depending on the flags entered
+    // doFunctions parse arguments and execute method from image_handler_ deppending on the flags entered
     void doHelp();
     void doInfo();
     void doCircle();
@@ -138,35 +163,6 @@ private:
     void doSplit();
     void doSquaredLines();
     void doOutsideOrnament();
-
-public:
-    
-    /**
-     * @brief Construct a new Handler object
-     * 
-     */
-    Handler();
-
-    /**
-     * @brief Destroy the Handler object
-     * 
-     */
-    ~Handler();
-
-    /**
-     * @brief Get the flags and write them to the map (flags_)
-     * 
-     * @param[in] argc 
-     * @param[in] argv 
-     */
-    void getFlags(int argc, char **argv);
-    
-    /**
-     * @brief Handling flags and calling the appropriate function
-     * 
-     */
-    void handleFlags();
 };
-}
 
 #endif

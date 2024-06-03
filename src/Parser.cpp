@@ -16,13 +16,13 @@
 #include <functional>
 
 
-void psr::throwError(const char *error_message, int exit_code)
+void Parser::throwError(const char *error_message, int exit_code)
 {
     printf("%s\n", error_message);
     exit(exit_code);
 }
 
-void psr::parseCoords(int& x, int& y, std::string& str)
+void Parser::parseCoords(int& x, int& y, std::string& str)
 {
     std::cmatch groups;
     std::regex pattern("(-?[0-9]+)\\.(-?[0-9]+)");
@@ -35,7 +35,7 @@ void psr::parseCoords(int& x, int& y, std::string& str)
     y = stoi(groups[2]);
 }
 
-void psr::parseNumber(int& number, std::string& str)
+void Parser::parseNumber(int& number, std::string& str)
 {
     std::cmatch groups;
     std::regex pattern("-?[0-9]+");
@@ -48,7 +48,7 @@ void psr::parseNumber(int& number, std::string& str)
 }
 
 
-void psr::parseColorRGBA(ie::ColorRGBA& color, std::string& str)
+void Parser::parseColorRGBA(ie::ColorRGBA& color, std::string& str)
 {
     std::cmatch groups;
     std::regex pattern("([0-9]+)\\.([0-9]+)\\.([0-9]+)");
@@ -73,7 +73,7 @@ void psr::parseColorRGBA(ie::ColorRGBA& color, std::string& str)
     }
 }
 
-void psr::parseComponentName(int& parameter, std::string& str)
+void Parser::parseComponentName(int& parameter, std::string& str)
 {
     if (str == "red") {
         parameter = R_IDX;
@@ -90,7 +90,7 @@ void psr::parseComponentName(int& parameter, std::string& str)
     throwError("Error: component parsing failed.", PARSER_ERROR);    
 }
 
-void psr::checkValueValidity(int value, std::function<bool(int)> check_func)
+void Parser::checkValueValidity(int value, std::function<bool(int)> check_func)
 {
     if (!check_func(value)) {
         throwError("Error: value parsing failed.", PARSER_ERROR);

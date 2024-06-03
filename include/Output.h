@@ -25,13 +25,13 @@ public:
      * @brief Construct a new Output object
      * 
      */
-    Output();
+    Output() = delete;
 
     /**
      * @brief Destroy the Output object
      * 
      */
-    ~Output();
+    ~Output() = delete;
 
     /**
      * @brief Displays information about the variant and the author of the course
@@ -43,7 +43,7 @@ public:
     static void showAuthorInfo(const char *option, const char *name, const char *surname);
 
     /**
-     * @brief Help with information on how to work with the utility
+     * @brief Shows help with information about launch flags
      * 
      */
     static void help();

@@ -1,6 +1,6 @@
 /**
  * @file Output.cpp
- * @brief Implementation of methods for outputing data in out stream
+ * @brief Implementation of Output class methods for outputing data in out stream
  * @version 0.1.0
  * @date 2024-05-19
  * 
@@ -9,12 +9,8 @@
  */
 
 #include "Output.h"
-
 #include <stdio.h>
 
-Output::Output() = default;
-
-Output::~Output() = default;
 
 void Output::showAuthorInfo(const char *option, const char *name, const char *surname)
 {

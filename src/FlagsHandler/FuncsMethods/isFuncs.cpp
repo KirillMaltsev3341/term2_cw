@@ -1,6 +1,6 @@
 /**
  * @file isFuncs.cpp
- * @brief Implementation of methods (isFunctions - for tracking wich doFunction should be executed) for Handler class
+ * @brief Implementation of methods (isFunctions - for tracking wich doFunction should be executed) for FlagsHandler class
  * @version 0.1.0
  * @date 2024-05-19
  * 
@@ -8,10 +8,10 @@
  * 
  */
 
-#include "Handler.h"
+#include "FlagsHandler.h"
 
 
-bool hdlr::Handler::isHelp()
+bool FlagsHandler::isHelp()
 {
     std::set<int> required_flags = {};
     std::set<int> optional_flags = {HELP_IDX};
@@ -19,7 +19,7 @@ bool hdlr::Handler::isHelp()
     return checkFlagCompliance(required_flags, redundant_flags);
 }
 
-bool hdlr::Handler::isInfo()
+bool FlagsHandler::isInfo()
 {
     std::set<int> required_flags = {INFO_IDX};
     std::set<int> optional_flags = {INPUT_IDX};
@@ -27,7 +27,7 @@ bool hdlr::Handler::isInfo()
     return checkFlagCompliance(required_flags, redundant_flags);
 }
 
-bool hdlr::Handler::isCircle()
+bool FlagsHandler::isCircle()
 {
     std::set<int> required_flags = {CIRCLE_IDX, CENTER_IDX, RADIUS_IDX, THICKNESS_IDX, COLOR_IDX};
     std::set<int> optional_flags = {INPUT_IDX, OUTPUT_IDX, FILL_IDX, FILL_COLOR_IDX};
@@ -35,7 +35,7 @@ bool hdlr::Handler::isCircle()
     return checkFlagCompliance(required_flags, redundant_flags) && !(flags_[FILL_IDX].entered && !flags_[FILL_COLOR_IDX].entered);
 }
 
-bool hdlr::Handler::isRGBFilter()
+bool FlagsHandler::isRGBFilter()
 {
     std::set<int> required_flags = {RGBFILTER_IDX, COMPONENT_NAME_IDX, COMPONENT_VALUE_IDX};
     std::set<int> optional_flags = {INPUT_IDX, OUTPUT_IDX};
@@ -43,7 +43,7 @@ bool hdlr::Handler::isRGBFilter()
     return checkFlagCompliance(required_flags, redundant_flags);
 }
 
-bool hdlr::Handler::isSplit()
+bool FlagsHandler::isSplit()
 {
     std::set<int> required_flags = {SPLIT_IDX, NUMBER_X_IDX, NUMBER_Y_IDX, THICKNESS_IDX, COLOR_IDX};
     std::set<int> optional_flags = {INPUT_IDX, OUTPUT_IDX};
@@ -51,7 +51,7 @@ bool hdlr::Handler::isSplit()
     return checkFlagCompliance(required_flags, redundant_flags);
 }
 
-bool hdlr::Handler::isSquaredLines()
+bool FlagsHandler::isSquaredLines()
 {
     std::set<int> required_flags = {SQUARED_LINES_IDX, LEFT_UP_IDX, SIDE_SIZE_IDX, THICKNESS_IDX, COLOR_IDX};
     std::set<int> optional_flags = {INPUT_IDX, OUTPUT_IDX, FILL_IDX, FILL_COLOR_IDX};
@@ -59,7 +59,7 @@ bool hdlr::Handler::isSquaredLines()
     return checkFlagCompliance(required_flags, redundant_flags) && !(flags_[FILL_IDX].entered && !flags_[FILL_COLOR_IDX].entered);
 }
 
-bool hdlr::Handler::isOutsideOrnament()
+bool FlagsHandler::isOutsideOrnament()
 {
     std::set<int> required_flags = {OUTSIDE_ORNAMENT_IDX, THICKNESS_IDX, COLOR_IDX};
     std::set<int> optional_flags = {INPUT_IDX, OUTPUT_IDX};

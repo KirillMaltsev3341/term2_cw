@@ -1,6 +1,6 @@
 /**
- * @file doFuncs.cpp
- * @brief Implementation of main methods for Handler class (getFlags, handleFlags, ...)
+ * @file FlagsHandler.cpp
+ * @brief Implementation of main methods for FlagsHandler class (getFlags, handleFlags, ...)
  * @version 0.1.0
  * @date 2024-05-19
  * 
@@ -8,7 +8,7 @@
  * 
  */
 
-#include "Handler.h"
+#include "FlagsHandler.h"
 
 #include <getopt.h>
 #include <stdio.h>
@@ -17,7 +17,7 @@
 #include <set>
 
 
-hdlr::Handler::Handler() :
+FlagsHandler::FlagsHandler() :
     flags_{
         {HELP_IDX,               {0, ""}},
         {INPUT_IDX,              {0, ""}},
@@ -81,15 +81,16 @@ hdlr::Handler::Handler() :
     }
 {}
 
-hdlr::Handler::~Handler() = default;
+FlagsHandler::~FlagsHandler() = default;
 
-void hdlr::throwError(const char *error_message, int exit_code)
+void FlagsHandler::throwError(const char *error_message, int exit_code)
 {
     printf("%s\n", error_message);
     exit(exit_code);
 }
 
-void hdlr::Handler::getFlags(int argc, char **argv)
+
+void FlagsHandler::getFlags(int argc, char **argv)
 {   
     opterr = 0;
     int option;
@@ -106,7 +107,7 @@ void hdlr::Handler::getFlags(int argc, char **argv)
     last_argument_ = argv[argc-1];
 }
 
-std::set<int> hdlr::Handler::getRedundantFlags(std::set<int>& required_flags, 
+std::set<int> FlagsHandler::getRedundantFlags(std::set<int>& required_flags, 
     std::set<int>& optional_flags)
 {
     std::set<int> redundant_flags;
@@ -121,7 +122,7 @@ std::set<int> hdlr::Handler::getRedundantFlags(std::set<int>& required_flags,
     return redundant_flags;
 }
 
-bool hdlr::Handler::checkFlagCompliance(std::set<int>& required_flags, std::set<int>& redundant_flags) {
+bool FlagsHandler::checkFlagCompliance(std::set<int>& required_flags, std::set<int>& redundant_flags) {
     bool all_required_entered = true;
     for (auto i : required_flags) {
         all_required_entered &= flags_[i].entered;
@@ -134,7 +135,7 @@ bool hdlr::Handler::checkFlagCompliance(std::set<int>& required_flags, std::set<
     return all_required_entered && all_redundant_not_entered;
 }
 
-void hdlr::Handler::getFinFoutNames(std::string &input_file_name, std::string &output_file_name)
+void FlagsHandler::getFinFoutNames(std::string &input_file_name, std::string &output_file_name)
 {
     if (flags_[INPUT_IDX].entered) {
         input_file_name = flags_[INPUT_IDX].parameter;
@@ -147,7 +148,7 @@ void hdlr::Handler::getFinFoutNames(std::string &input_file_name, std::string &o
     }
 }
 
-void hdlr::Handler::handleFlags()
+void FlagsHandler::handleFlags()
 {
     if (isHelp()) {
         doHelp();
